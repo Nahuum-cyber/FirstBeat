@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FirstBeat | Mission health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h4l2-6 4 12 3-9 2 3h5"/></svg>
+    <div><h1>FirstBeat</h1><p class="muted">Crew health on a Mars transit</p></div>
+  </div>
+  <div class="top-right">
+    <span id="missionDay"></span>
+    <span class="chip">Earth delay: <span id="delay"></span> min</span>
+  </div>
+</header>
+
+<aside class="emergency-banner" id="emergencyBanner" role="alert" hidden>
+  <p><strong>Emergency active. Follow the onboard protocol.</strong></p>
+  <button class="btn" id="reopenEmergency">Reopen emergency</button>
+</aside>
+
+<main class="grid">
+  <section class="card hero" id="hero" data-status="watch" aria-labelledby="headline">
+    <div class="row"><h2>Your heart today</h2><span class="mono muted">09:41 MTC</span></div>
+    <div class="heartrow">
+      <svg class="heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+      <span class="badge" id="badge"></span>
+    </div>
+    <h3 id="headline"></h3>
+    <p class="muted" id="sub"></p>
+    <button class="btn primary" id="startCheckin">Start check-in</button>
+  </section>
+
+  <section class="card chart" aria-labelledby="chartTitle">
+    <div class="row"><h2 id="chartTitle">Resting heart rate</h2><span class="mono" id="today"></span></div>
+    <p class="muted" id="range"></p>
+    <svg id="chart" viewBox="0 0 640 260" role="img" aria-label="Resting heart rate over 30 days with the personal baseline band"></svg>
+    <ul class="legend muted">
+      <li><i class="sw line"></i>Daily average</li>
+      <li><i class="sw band"></i><span id="bandLabel"></span></li>
+      <li><i class="sw dash"></i>Solar event</li>
+    </ul>
+  </section>
+
+  <section class="metrics" id="metrics" aria-label="Health indicators"></section>
+
+  <aside class="redflag" role="note">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>
+    <p><strong>Chest pain, fainting or severe breathlessness?</strong> Stop and follow the onboard emergency protocol. Don’t wait for Earth.</p>
+  </aside>
+
+  <section class="card steps" aria-labelledby="stepsTitle">
+    <div class="row"><h2 id="stepsTitle">What to do now</h2><span class="muted">Onboard guidance</span></div>
+    <ol id="steps"></ol>
+  </section>
+
+  <section class="card ground" aria-labelledby="groundTitle">
+    <div class="row"><h2 id="groundTitle">Ground Link</h2><span class="badge" data-status="watch" id="groundBadge">Delayed</span></div>
+    <p class="muted">Send your latest readings to the mission medical team.</p>
+    <div id="groundBody"></div>
+  </section>
+</main>
+
+<footer class="foot muted">
+  <span>Fictional data. Simulation only, not for medical use.</span>
+  <span>Baseline: first 24 days of your own readings</span>
+</footer>
+
+<dialog id="checkin" aria-label="Quick check-in"><div id="ciBody"></div></dialog>
+<script src="app.js"></script>
+</body>
+</html>
